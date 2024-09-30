@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @twitter %>
 
-<div>
-  <%= link_to "Edit this twitter", edit_twitter_path(@twitter) %> |
-  <%= link_to "Back to twitters", twitters_path %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Tweet</h5>
+    <%= render @twitter %>
+    <%= link_to "Edit this twitter", edit_twitter_path(@twitter), class:"card-link" %>
+    <%= link_to "Back to twitters", twitters_path, class:"card-link" %>
+  </div>
+</div>
 
-  <%= button_to "Destroy this twitter", @twitter, method: :delete %>
+
+<div class = "pt-3">
+  <%= button_to "Destroy", @twitter, method: :delete, class:"btn btn-danger" %>
 </div>
