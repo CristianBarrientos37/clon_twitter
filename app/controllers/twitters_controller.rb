@@ -4,7 +4,7 @@ class TwittersController < ApplicationController
   # GET /twitters or /twitters.json
   
   def index
-    @pagy, @twitters = pagy(Twitter.all)
+    @pagy, @twitters = pagy(Twitter.order(created_at: :desc))
 
     if params[:query_text].present?
       @twitters = @twitters.search_full_text(params[:query_text])

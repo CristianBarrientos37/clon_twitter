@@ -2,20 +2,42 @@
 
 <% content_for :title, "Twitters" %>
 
-<h1>Twitters</h1>
+<h1>
+  Twitters:
+  <%=@twitters.count%>
+  /
+  <%=Twitter.count%>
+</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Tweet</th>
+      <th scope="col">Username</th>
+      <th scope="col">Create</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <div id="twitters">
+      <% @twitters.each do |twitter| %>
+        
+        <tr>
+          <th><%= twitter.id%></th>
+          <td><%= twitter.description%></td>
+          <td><%= twitter.username%></td>
+          <td><%= twitter.created_at%></td>
+          <td><%= link_to "Show", twitter, class:"btn btn-dark" %></td>
+          <td><%= link_to "Edit", edit_twitter_path(twitter), class:"btn btn-dark" %></td>
+          <td><%= button_to "Destroy", @twitter, method: :delete, class:"btn btn-danger", data: {confirm: 'Esta seguro?'} %></td>
+        </tr>
+      <% end %>
+    </div>
+    
+  </tbody>
+</table>
+
+<%== pagy_nav(@pagy) %>
 
 
-<%= form_with url: twitters_path, method: :get do |form|%>
- <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text]%>
-  <div id="twitters">
-    <% @twitters.each do |twitter| %>
-      <%= render twitter %>
-      <p>
-        <%= link_to "Show this twitter", twitter %>
-      </p>
-    <% end %>
-  </div>
-<%end%>
-<%== pagy_nav(@pagy)%>
 
-<%= link_to "New twitter", new_twitter_path, class:"btn btn-dark"%>
