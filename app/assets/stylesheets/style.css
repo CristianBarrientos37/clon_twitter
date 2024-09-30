@@ -1,0 +1,5 @@
+.pagy input[style] {
+    /* This is just for the sake of demo: indeed the width is already calculated and assigned dynamically 
+       considering the total number of digits that may appear in the input, so you should not need to override it */
+    width: 10rem !important;
+  }
