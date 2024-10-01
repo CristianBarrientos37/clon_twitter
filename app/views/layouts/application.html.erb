@@ -31,8 +31,14 @@
             </li>
           </ul>
           <%= form_with url: twitters_path, method: :get do |form|%>
-            <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text]%>
+            <div class="d-flex flex-row">
+              
+              <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text], class:"form-control me-2"%>
+              <%= button_to "Search", @twitter, method: :search, class:"btn btn-outline-success", data: {confirm: 'Esta seguro?'} %>
+              
+            </div>
           <%end%>
+          
         </div>
       </div>
     </nav>
