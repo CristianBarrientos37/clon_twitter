@@ -112,7 +112,7 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     execjs (2.9.1)
-    faker (3.4.2)
+    faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -321,7 +321,7 @@ DEPENDENCIES
   capybara
   dartsass-sprockets
   debug
-  faker (~> 3.4, >= 3.4.2)
+  faker (~> 3.5)
   importmap-rails
   jbuilder
   jquery-rails
