@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_29_044702) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[7.2].define(version: 2024_12_17_000001) do
   create_table "twitters", force: :cascade do |t|
     t.string "description"
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_twitters_on_created_at"
+    t.index ["description"], name: "index_twitters_on_description"
+    t.index ["username"], name: "index_twitters_on_username", unique: true
   end
 end
