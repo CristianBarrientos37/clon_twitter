@@ -9,9 +9,9 @@ Rails.application.configure do
   # Warn on queries that return more than 1000 records
   config.active_record.warn_on_records_fetched_greater_than = 1000
   
-  # Enable automatic explain for slow queries in development
+  # Enable verbose query logs in development (Rails 7.2+ alternative)
   if Rails.env.development?
-    config.active_record.auto_explain_threshold_in_seconds = 0.5
+    config.active_record.verbose_query_logs = true
   end
 end
 

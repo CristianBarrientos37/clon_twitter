@@ -1,0 +1,16 @@
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+/usr/bin/ruby3.3 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250727-3323-ubrol6 sitelibdir\=./.gem.20250727-3323-ubrol6 clean
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250727-3323-ubrol6 sitelibdir\=./.gem.20250727-3323-ubrol6
+make: Nothing to be done for 'all'.
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250727-3323-ubrol6 sitelibdir\=./.gem.20250727-3323-ubrol6 install
+
+current directory: /workspace/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250727-3323-ubrol6 sitelibdir\=./.gem.20250727-3323-ubrol6 clean
