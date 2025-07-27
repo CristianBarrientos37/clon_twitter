@@ -70,3 +70,6 @@ gem 'bootstrap', '~> 5.3', '>= 5.3.3'
 gem 'jquery-rails'
 
 gem 'dartsass-sprockets'
+
+# Authentication
+gem 'devise'

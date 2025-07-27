@@ -1,10 +1,11 @@
 class TwittersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_twitter, only: %i[ show edit update destroy ]
+  before_action :check_owner, only: %i[ edit update destroy ]
 
   # GET /twitters or /twitters.json
   def index
-    # Fix: Apply search before pagination for correct results
-    @twitters = Twitter.recent
+    @twitters = Twitter.public_tweets.recent
     
     if params[:query_text].present?
       @twitters = @twitters.search_full_text(params[:query_text])
@@ -19,7 +20,7 @@ class TwittersController < ApplicationController
 
   # GET /twitters/new
   def new
-    @twitter = Twitter.new
+    @twitter = current_user.twitters.build
   end
 
   # GET /twitters/1/edit
@@ -30,15 +31,23 @@ class TwittersController < ApplicationController
   end
 
   def search
+    @twitters = Twitter.public_tweets.recent
+    
+    if params[:query_text].present?
+      @twitters = @twitters.search_full_text(params[:query_text])
+    end
+    
+    @pagy, @twitters = pagy(@twitters)
+    render :index
   end
 
   # POST /twitters or /twitters.json
   def create
-    @twitter = Twitter.new(twitter_params)
+    @twitter = current_user.twitters.build(twitter_params)
 
     respond_to do |format|
       if @twitter.save
-        format.html { redirect_to @twitter, notice: "Twitter was successfully created." }
+        format.html { redirect_to @twitter, notice: "Tweet creado exitosamente!" }
         format.json { render :show, status: :created, location: @twitter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +60,7 @@ class TwittersController < ApplicationController
   def update
     respond_to do |format|
       if @twitter.update(twitter_params)
-        format.html { redirect_to @twitter, notice: "Twitter was successfully updated." }
+        format.html { redirect_to @twitter, notice: "Tweet actualizado exitosamente!" }
         format.json { render :show, status: :ok, location: @twitter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +74,7 @@ class TwittersController < ApplicationController
     @twitter.destroy!
 
     respond_to do |format|
-      format.html { redirect_to twitters_path, status: :see_other, notice: "Twitter was successfully destroyed." }
+      format.html { redirect_to twitters_path, status: :see_other, notice: "Tweet eliminado exitosamente!" }
       format.json { head :no_content }
     end
   end
@@ -75,11 +84,18 @@ class TwittersController < ApplicationController
     def set_twitter
       @twitter = Twitter.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to twitters_path, alert: "Twitter not found."
+      redirect_to twitters_path, alert: "Tweet no encontrado."
+    end
+
+    # Check if current user owns the twitter
+    def check_owner
+      unless @twitter.user == current_user
+        redirect_to twitters_path, alert: "No tienes permiso para realizar esta acción."
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def twitter_params
-      params.require(:twitter).permit(:description, :username)
+      params.require(:twitter).permit(:description)
     end
 end

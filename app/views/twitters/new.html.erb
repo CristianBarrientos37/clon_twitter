@@ -1,11 +1,117 @@
 <% content_for :title, "New twitter" %>
 
-<h1>New twitter</h1>
+<div class="row">
+  <div class="col-lg-6 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+          <i class="fas fa-feather-alt me-2"></i>
+          Crear nuevo tweet
+        </h4>
+      </div>
+      
+      <div class="card-body">
+        <%= form_with model: @twitter, local: true, class: "needs-validation", novalidate: true do |form| %>
+          <% if @twitter.errors.any? %>
+            <div class="alert alert-danger">
+              <h6><i class="fas fa-exclamation-triangle me-2"></i>Hay algunos errores:</h6>
+              <ul class="mb-0">
+                <% @twitter.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-<%= render "form", twitter: @twitter %>
+          <!-- Tweet text area -->
+          <div class="mb-3">
+            <%= form.label :description, "¿Qué está pasando?", class: "form-label fw-bold" %>
+            <%= form.text_area :description, 
+                class: "form-control form-control-lg", 
+                rows: 4, 
+                placeholder: "Comparte tus pensamientos...",
+                maxlength: 280,
+                required: true,
+                id: "tweet-textarea" %>
+            <div class="d-flex justify-content-between mt-2">
+              <div class="invalid-feedback">
+                Por favor escribe algo antes de tweetear.
+              </div>
+              <small class="text-muted">
+                <span id="char-count">0</span>/280 caracteres
+              </small>
+            </div>
+          </div>
 
-<br>
+          <!-- User info display -->
+          <div class="d-flex align-items-center mb-4 p-3 bg-light rounded">
+            <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                 style="width: 40px; height: 40px;">
+              <%= current_user.first_name[0].upcase %>
+            </div>
+            <div>
+              <strong><%= current_user.full_name %></strong><br>
+              <small class="text-muted"><%= current_user.display_name %></small>
+            </div>
+          </div>
 
-<div>
-  <%= link_to "Back to twitters", twitters_path, class:"btn btn-dark" %>
+          <!-- Actions -->
+          <div class="d-flex justify-content-between">
+            <%= link_to twitters_path, class: "btn btn-outline-secondary" do %>
+              <i class="fas fa-arrow-left me-2"></i>Cancelar
+            <% end %>
+            
+            <%= form.submit "Tweetear", 
+                class: "btn btn-primary btn-lg px-4", 
+                id: "submit-tweet",
+                disabled: true %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h6 class="card-title">
+          <i class="fas fa-lightbulb text-warning me-2"></i>
+          Tips para un buen tweet
+        </h6>
+        <ul class="small text-muted mb-0">
+          <li>Sé claro y conciso</li>
+          <li>Comparte algo interesante o útil</li>
+          <li>Respeta a otros usuarios</li>
+          <li>¡Diviértete compartiendo tus ideas!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const textarea = document.getElementById('tweet-textarea');
+  const charCount = document.getElementById('char-count');
+  const submitBtn = document.getElementById('submit-tweet');
+  
+  function updateCharCount() {
+    const length = textarea.value.length;
+    charCount.textContent = length;
+    
+    // Update submit button state
+    submitBtn.disabled = length === 0 || length > 280;
+    
+    // Color coding for character count
+    if (length > 260) {
+      charCount.className = 'text-danger fw-bold';
+    } else if (length > 240) {
+      charCount.className = 'text-warning fw-bold';
+    } else {
+      charCount.className = 'text-muted';
+    }
+  }
+  
+  textarea.addEventListener('input', updateCharCount);
+  updateCharCount(); // Initial call
+});
+</script>

@@ -1,0 +1,160 @@
+<div class="hero-section bg-primary text-white py-5 mb-5" style="margin-top: -2rem;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">
+          <i class="fab fa-twitter me-3"></i>
+          Bienvenido a TwitterClone
+        </h1>
+        <p class="lead mb-4">
+          La red social donde tu voz importa. Comparte tus pensamientos, conecta con personas increíbles y mantente al día con las últimas conversaciones.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <%= link_to new_user_registration_path, class: "btn btn-light btn-lg px-4" do %>
+            <i class="fas fa-user-plus me-2"></i>Únete ahora
+          <% end %>
+          <%= link_to new_user_session_path, class: "btn btn-outline-light btn-lg px-4" do %>
+            <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <i class="fab fa-twitter" style="font-size: 15rem; opacity: 0.3;"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Features Section -->
+  <div class="row mb-5">
+    <div class="col-12 text-center mb-5">
+      <h2 class="h3 mb-3">¿Por qué elegir TwitterClone?</h2>
+      <p class="text-muted">Descubre todo lo que puedes hacer en nuestra plataforma</p>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center p-4">
+          <div class="mb-3">
+            <i class="fas fa-feather-alt text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h5 class="card-title">Comparte libremente</h5>
+          <p class="card-text text-muted">
+            Expresa tus ideas en hasta 280 caracteres. Simple, directo y efectivo.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center p-4">
+          <div class="mb-3">
+            <i class="fas fa-users text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h5 class="card-title">Conecta con otros</h5>
+          <p class="card-text text-muted">
+            Descubre personas con intereses similares y amplía tu red de contactos.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center p-4">
+          <div class="mb-3">
+            <i class="fas fa-search text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h5 class="card-title">Busca y descubre</h5>
+          <p class="card-text text-muted">
+            Encuentra conversaciones relevantes y mantente informado sobre temas que te interesan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card bg-light border-0">
+        <div class="card-body text-center py-5">
+          <h3 class="mb-4">Únete a nuestra comunidad</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 class="text-primary fw-bold">Rápido</h4>
+              <p class="text-muted">Registro en menos de 2 minutos</p>
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-primary fw-bold">Seguro</h4>
+              <p class="text-muted">Tus datos están protegidos</p>
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-primary fw-bold">Gratis</h4>
+              <p class="text-muted">Siempre será gratuito</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <%= link_to new_user_registration_path, class: "btn btn-primary btn-lg px-5" do %>
+              <i class="fas fa-rocket me-2"></i>Comenzar ahora
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+      <h3>¿Cómo funciona?</h3>
+      <p class="text-muted">Es muy fácil empezar</p>
+    </div>
+    
+    <div class="col-md-3 text-center mb-4">
+      <div class="mb-3">
+        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+             style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
+          1
+        </div>
+      </div>
+      <h5>Regístrate</h5>
+      <p class="text-muted small">Crea tu cuenta con tu email y elige un nombre de usuario único</p>
+    </div>
+    
+    <div class="col-md-3 text-center mb-4">
+      <div class="mb-3">
+        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+             style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
+          2
+        </div>
+      </div>
+      <h5>Completa tu perfil</h5>
+      <p class="text-muted small">Añade información sobre ti para que otros puedan conocerte</p>
+    </div>
+    
+    <div class="col-md-3 text-center mb-4">
+      <div class="mb-3">
+        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+             style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
+          3
+        </div>
+      </div>
+      <h5>Escribe tu primer tweet</h5>
+      <p class="text-muted small">Comparte algo interesante con la comunidad</p>
+    </div>
+    
+    <div class="col-md-3 text-center mb-4">
+      <div class="mb-3">
+        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+             style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
+          4
+        </div>
+      </div>
+      <h5>Conecta y descubre</h5>
+      <p class="text-muted small">Explora tweets de otros usuarios y participa en conversaciones</p>
+    </div>
+  </div>
+</div>
