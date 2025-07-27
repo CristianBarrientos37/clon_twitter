@@ -2,13 +2,15 @@ class TwittersController < ApplicationController
   before_action :set_twitter, only: %i[ show edit update destroy ]
 
   # GET /twitters or /twitters.json
-  
   def index
-    @pagy, @twitters = pagy(Twitter.order(created_at: :desc))
-
+    # Fix: Apply search before pagination for correct results
+    @twitters = Twitter.recent
+    
     if params[:query_text].present?
       @twitters = @twitters.search_full_text(params[:query_text])
     end
+    
+    @pagy, @twitters = pagy(@twitters)
   end
 
   # GET /twitters/1 or /twitters/1.json
@@ -72,6 +74,8 @@ class TwittersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_twitter
       @twitter = Twitter.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to twitters_path, alert: "Twitter not found."
     end
 
     # Only allow a list of trusted parameters through.
